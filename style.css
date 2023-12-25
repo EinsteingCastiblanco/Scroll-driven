@@ -7,7 +7,7 @@
  
 .container { 
     font-size: 16px; 
-    padding: 10px 50px; 
+    padding: 10px 50px;  
     background-color: #25253b;
     scroll-behavior: smooth;
 
@@ -23,14 +23,14 @@
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         grid-auto-rows: minmax(200px, 1fr);
         gap: 40px 30px;
+        margin-bottom: 100px;
     }
     
 
     & article{ 
         padding: 20px;
         border-radius: 5px; 
-        border: 1px double #33ff8c; 
-        box-shadow: -1px -3px 16px -2px rgba(51, 255, 140, 1); 
+        border: 1px solid #33ff8c;  
         display: flex;
         justify-content: center;
         align-items: center; 
@@ -40,11 +40,37 @@
 
         & span {
 
-            background: linear-gradient(20deg, #33ff8c, #fff);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
+            background: linear-gradient(20deg, #33ff8c, #fff); 
+            /* -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; 
+            👇 es lo mismo
+            */
+            background-clip: text;
+            color: transparent;
         }
     } 
 }
+
  
+article{
+    view-timeline-name: --article;
+    --time-animation:  500ms;
+    animation: show var(--time-animation) ease-in-out  both; 
+    animation-timeline: view(y);
+    animation-range: entry 80% cover 50%;
+}
  
+@keyframes show{
+    from{
+        opacity: 0;
+        scale: 0.5;
+        box-shadow: 0;
+    }
+    to{
+        opacity: 1;
+        scale: 1; 
+        box-shadow: -1px -3px 16px -2px rgba(51, 255, 140, 1); 
+    }
+}
+ 
+  
